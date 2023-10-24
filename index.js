@@ -55,10 +55,10 @@ app.use(express.urlencoded({
         // ...
 
 // Define a route to get a product by ID
-app.get("/api/get_product/:pday", async (req, res) => {
+app.get("/api/get_product/:id", async (req, res) => {
     try {
         // Use the `Product` model to find a product by its ID
-        const productId = req.params.pday; // Extract the product ID from the request parameters
+        const productId = req.params.id; // Extract the product ID from the request parameters
         const product = await Product.findById(productId);
 
         if (!product) {
@@ -75,6 +75,7 @@ app.get("/api/get_product/:pday", async (req, res) => {
         });
     }
 });
+
 app.put("/api/update_product/:id", async (req, res) => {
     try {
         const productId = req.params.id;
@@ -83,7 +84,7 @@ app.put("/api/update_product/:id", async (req, res) => {
         const updatedProductData = req.body;
         console.log("Updated Product Data:", updatedProductData);
 
-        const updatedProduct = await Product.findByIdAndUpdate(productId, updatedProductData, { new: true });
+        const updatedProduct = await Mess.findByIdAndUpdate(productId, updatedProductData, { new: true });
         console.log("Updated Product:", updatedProduct);
 
         if (!updatedProduct) {
